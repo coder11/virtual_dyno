@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "virtual-dyno"
+version = "0.1.0"
+description = ""
+authors = ["Pavel Murygin <pavel.murygin@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "^2.1.2"
+matplotlib = "^3.9.2"
+scipy = "^1.14.1"
+pyqt5 = "^5.15.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

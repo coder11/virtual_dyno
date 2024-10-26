@@ -1,6 +1,9 @@
 import numpy as np
+import matplotlib
 import matplotlib.pyplot as plt
 from scipy.constants import pi
+
+matplotlib.use("Qt5Agg")
 
 # Initial Parameters
 motor_model = 'TorqueBoards 6355 190 Kv'
