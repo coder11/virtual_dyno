@@ -65,18 +65,23 @@ for i in range(len(torque_vector)):
 
 # Plotting function to organize plots in a grid
 def plot_contour(ax, x, y, z, title, c_label, levels, voltages, currents):
-    contour_plot = ax.contourf(x, y, z, levels=levels, cmap='jet')
+    # Fill contours
+    contour_plot = ax.contourf(x, y, z, levels=levels, cmap='jet', extend='both')
     ax.set_title(title)
     ax.set_xlabel('Speed [rpm]')
     ax.set_ylabel('Torque [N m]')
     cbar = plt.colorbar(contour_plot, ax=ax, label=c_label)
-    
+
     # Voltage and Current Contours
     v_contours = ax.contour(x, y, required_voltage_matrix, levels=voltages, colors='white', linestyles='-')
     ax.clabel(v_contours, fmt=lambda x: f"{x:.0f} [V]", fontsize=8)
-    
+
     c_contours = ax.contour(x, y, motor_current_matrix, levels=currents, colors='white', linestyles='--')
     ax.clabel(c_contours, fmt=lambda x: f"{x:.0f} [A]", fontsize=8)
+
+    # Add contour lines that match the filled contours
+    z_contours = ax.contour(x, y, z, levels=levels, colors='k', linewidths=0.5)  # Use the same levels
+    ax.clabel(z_contours, inline=True, fontsize=8, fmt="%.1f")  # Labeling the contour lines
 
 # Define plot levels
 efficiency_levels = np.arange(0, 101, 5)
