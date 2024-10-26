@@ -92,17 +92,20 @@ output_power_levels = np.linspace(0, np.max(output_power_matrix), 20)
 fig, axs = plt.subplots(2, 3, figsize=(18, 12))
 fig.suptitle(f"Motor Performance Maps - {motor_model}")
 
+voltages = [22, 37, 44, 52, 60, 67, 74]
+currents = [current * x for x in [0.25, 0.5, 0.75, 1]]
+
 # Plot each map in its respective subplot
 plot_contour(axs[0, 0], rpm_vector, torque_vector, motor_efficiency_matrix, "Efficiency Map", "Efficiency [%]", efficiency_levels, 
-             voltages=[22, 37, 44, 52, 60, 67, 74], currents=[current * x for x in [0.25, 0.5, 0.75, 1]])
+             voltages, currents)
 plot_contour(axs[0, 1], rpm_vector, torque_vector, total_loss_power_matrix, "Total Losses", "Losses [W]", loss_levels, 
-             voltages=[22, 37, 44, 52, 60, 67, 74], currents=[current * x for x in [0.25, 0.5, 0.75, 1]])
+             voltages, currents)
 plot_contour(axs[0, 2], rpm_vector, torque_vector, copper_loss_power_matrix, "Copper Losses", "Copper Losses [W]", loss_levels, 
-             voltages=[22, 37, 44, 52, 60, 67, 74], currents=[current * x for x in [0.25, 0.5, 0.75, 1]])
+             voltages, currents)
 plot_contour(axs[1, 0], rpm_vector, torque_vector, core_loss_power_matrix, "Core Losses", "Core Losses [W]", loss_levels, 
-             voltages=[22, 37, 44, 52, 60, 67, 74], currents=[current * x for x in [0.25, 0.5, 0.75, 1]])
+             voltages, currents)
 plot_contour(axs[1, 1], rpm_vector, torque_vector, output_power_matrix, "Output Power", "Output Power [W]", output_power_levels, 
-             voltages=[22, 37, 44, 52, 60, 67, 74], currents=[current * x for x in [0.25, 0.5, 0.75, 1]])
+             voltages, currents)
 
 # Hide the empty subplot (bottom right in 2x3 grid)
 axs[1, 2].axis('off')
